@@ -1,1 +1,1 @@
-recursive-include ng_component/frontend/dist *
+recursive-include root_component/frontend/dist *
