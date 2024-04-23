@@ -3,7 +3,12 @@ import { StreamlitService } from '../../services/streamlit.service';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { documents } from './example';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,8 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
 export class CompareFormComponent implements OnInit, OnDestroy {
   destroy$ = new Subject<void>();
   documentForm = this.fb.group({
-    resume: [''],
-    jobDescription: [''],
+    resume: ['', Validators.required],
+    jobDescription: ['', Validators.required],
   });
 
   constructor(
