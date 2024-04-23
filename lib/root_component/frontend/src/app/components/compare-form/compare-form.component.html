@@ -1,0 +1,24 @@
+<form class="compare-form" [formGroup]="documentForm">
+  <div class="compare-form__fields">
+    <mat-form-field class="compare-form__fields__item">
+      <mat-label>Resume</mat-label>
+      <textarea
+        matInput
+        rows="20"
+        formControlName="resume"
+        placeholder="I am a data enthusiast"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field class="compare-form__fields__item">
+      <mat-label>Job Description</mat-label>
+      <textarea
+        matInput
+        rows="20"
+        formControlName="jobDescription"
+        placeholder="We're looking for a data scientist"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="compare()">Compare</button>
+</form>
