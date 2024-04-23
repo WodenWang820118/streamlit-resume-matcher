@@ -23,6 +23,9 @@ class TextPreprocessor:
         # Remove stopwords
         tokens = [token for token in tokens if token not in self.stop_words]
 
+        # Remove numbers
+        tokens = [token for token in tokens if not token.isdigit()]
+
         # Perform stemming or lemmatization
         if self.stemming:
             tokens = [self.stemmer.stem(token) for token in tokens]
@@ -34,14 +37,3 @@ class TextPreprocessor:
 
         return preprocessed_text
 
-# Example usage
-resume_text = "I am a data scientist with experience in machine learning."
-linkedin_text = "We are seeking a data scientist with expertise in AI and ML."
-
-preprocessor = TextPreprocessor(lemmatization=True)
-
-preprocessed_resume = preprocessor.preprocess(resume_text)
-preprocessed_linkedin = preprocessor.preprocess(linkedin_text)
-
-print("Preprocessed Resume:", preprocessed_resume)
-print("Preprocessed LinkedIn:", preprocessed_linkedin)

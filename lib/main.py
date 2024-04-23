@@ -1,32 +1,35 @@
 import streamlit as st
-
+import pandas as pd
 from root_component import root_component
+from python.text_preprocessor import TextPreprocessor
+from python.tfidf_calculator import TfidfCalculator
+from python.cosine_similarity_calculator import CosineSimilarityCalculator
 
-# Add some test code to play with the component while it's in development.
-# During development, we can run this just as we would any other Streamlit
-# app: `$ streamlit run my_component/example.py`
+st.set_page_config(page_title="Angular in Streamlit", page_icon=":rocket:", layout="wide")
 
-# st.subheader("Component with constant args")
+with st.container(border=False, height=600):
+  # mount the component
+  documents = root_component(data="Hello, World!", key="root_component")
 
-# Create an instance of our component with a constant `name` arg, and
-# print its output value.
-# num_clicks = root_component("World")
-# st.markdown("You've clicked %s times!" % int(num_clicks))
+  # Mock data when the component is not mounted
+  resume_text = "This is a mock resume text. It contains relevant skills and experience."
+  job_description = "This is a mock job description. It outlines the required qualifications."
 
-# st.markdown("---")
-# st.subheader("Component with variable args")
+  if isinstance(documents, dict) and "resume" in documents and "jobDescription" in documents:
+    resume_text = documents["resume"]
+    job_description = documents["jobDescription"]
 
-# Create a second instance of our component whose `name` arg will vary
-# based on a text_input widget.
-#
-# We use the special "key" argument to assign a fixed identity to this
-# component instance. By default, when a component's arguments change,
-# it is considered a new instance and will be re-mounted on the frontend
-# and lose its current state. In this case, we want to vary the component's
-# "name" argument without having it get recreated.
-# name_input = st.text_input("Enter a name", value="Streamlit")
-# num_clicks = root_component(name_input, key="foo")
-# st.markdown("You've clicked %s times!" % int(num_clicks))
+  # preprocess the text
+  preprocessor = TextPreprocessor(lemmatization=True)
+  preprocessed_resume = preprocessor.preprocess(resume_text)
+  preprocessed_job_description = preprocessor.preprocess(job_description)
 
-num_clicks = root_component("World")
-st.markdown("You've clicked %s times!" % int(num_clicks))
+  # calculate the tfidf matrix
+  tfidf_calculator = TfidfCalculator()
+  documents = [preprocessed_resume, preprocessed_job_description]
+  tfidf_matrix, feature_names = tfidf_calculator.calculate_tfidf(documents)
+
+  # calculate the similarity score
+  similarity_calculator = CosineSimilarityCalculator(tfidf_matrix)
+  similarity_score = similarity_calculator.calculate_similarity(0, 1)
+st.write("Matching Score:", similarity_score)
