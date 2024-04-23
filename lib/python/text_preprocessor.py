@@ -1,0 +1,47 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+nltk.download('punkt') # for stemming
+nltk.download('wordnet') # for lemmatization
+
+class TextPreprocessor:
+    def __init__(self, stemming=False, lemmatization=True):
+        self.stemming = stemming
+        self.lemmatization = lemmatization
+        self.stop_words = set(stopwords.words('english'))
+        self.stemmer = PorterStemmer()
+        self.lemmatizer = WordNetLemmatizer()
+
+    def preprocess(self, text):
+        # Tokenize the text
+        tokens = word_tokenize(text)
+
+        # Convert to lowercase
+        tokens = [token.lower() for token in tokens]
+
+        # Remove stopwords
+        tokens = [token for token in tokens if token not in self.stop_words]
+
+        # Perform stemming or lemmatization
+        if self.stemming:
+            tokens = [self.stemmer.stem(token) for token in tokens]
+        elif self.lemmatization:
+            tokens = [self.lemmatizer.lemmatize(token) for token in tokens]
+
+        # Join the tokens back into a string
+        preprocessed_text = ' '.join(tokens)
+
+        return preprocessed_text
+
+# Example usage
+resume_text = "I am a data scientist with experience in machine learning."
+linkedin_text = "We are seeking a data scientist with expertise in AI and ML."
+
+preprocessor = TextPreprocessor(lemmatization=True)
+
+preprocessed_resume = preprocessor.preprocess(resume_text)
+preprocessed_linkedin = preprocessor.preprocess(linkedin_text)
+
+print("Preprocessed Resume:", preprocessed_resume)
+print("Preprocessed LinkedIn:", preprocessed_linkedin)
