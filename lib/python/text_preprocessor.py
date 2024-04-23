@@ -8,6 +8,7 @@ class TextPreprocessor:
     def __init__(self, stemming=False, lemmatization=True):
         nltk.download('punkt')
         nltk.download('wordnet')
+        nltk.download('stopwords')
         self.stemming = stemming
         self.lemmatization = lemmatization
         self.stop_words = set(stopwords.words('english'))
