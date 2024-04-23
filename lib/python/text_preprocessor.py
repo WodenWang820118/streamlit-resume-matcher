@@ -2,11 +2,13 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer, WordNetLemmatizer
-nltk.download('punkt') # for stemming
-nltk.download('wordnet') # for lemmatization
+
 
 class TextPreprocessor:
     def __init__(self, stemming=False, lemmatization=True):
+        nltk.download('punkt')
+        nltk.download('wordnet')
+        nltk.download('stopwords')
         self.stemming = stemming
         self.lemmatization = lemmatization
         self.stop_words = set(stopwords.words('english'))

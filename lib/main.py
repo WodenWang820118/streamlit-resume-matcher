@@ -4,9 +4,10 @@ from python.text_preprocessor import TextPreprocessor
 from python.tfidf_calculator import TfidfCalculator
 from python.cosine_similarity_calculator import CosineSimilarityCalculator
 
-st.set_page_config(page_title="Angular in Streamlit", page_icon=":rocket:", layout="wide")
 
-with st.container(border=False, height=600):
+st.set_page_config(page_title="Streamlit Angular", page_icon=":rocket:", layout="wide")
+
+with st.container(border=False):
   # mount the component
   documents = root_component(data="Hello, World!", key="root_component")
 
