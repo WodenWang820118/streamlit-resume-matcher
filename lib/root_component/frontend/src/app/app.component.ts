@@ -13,11 +13,11 @@ export class AppComponent implements OnInit, AfterContentInit, OnDestroy {
   constructor(private streamlitService: StreamlitService) {}
 
   ngOnInit() {
+    this.streamlitService.setFrameHeight(650);
     this.streamlitService.addEventListener();
   }
 
   ngAfterContentInit() {
-    this.streamlitService.setFrameHeight(window.innerHeight);
     this.streamlitService.setComponentReady();
   }
 
