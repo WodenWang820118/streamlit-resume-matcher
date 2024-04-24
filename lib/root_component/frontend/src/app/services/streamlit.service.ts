@@ -36,8 +36,8 @@ export class StreamlitService {
     Streamlit.setComponentReady();
   }
 
-  setFrameHeight() {
-    Streamlit.setFrameHeight();
+  setFrameHeight(height?: number) {
+    Streamlit.setFrameHeight(height);
   }
 
   setComponentValue(value: any) {
