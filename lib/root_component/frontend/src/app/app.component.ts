@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewChecked,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CompareViewComponent } from './views/compare-view/compare-view.component';
 import { StreamlitService } from './services/streamlit.service';
@@ -9,13 +15,17 @@ import { StreamlitService } from './services/streamlit.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, AfterContentInit, OnDestroy {
   title = 'frontend';
   constructor(private streamlitService: StreamlitService) {}
+
   ngOnInit() {
-    this.streamlitService.addEventListener();
     this.streamlitService.setComponentReady();
-    this.streamlitService.setFrameHeight();
+    this.streamlitService.addEventListener();
+  }
+
+  ngAfterContentInit() {
+    this.streamlitService.setFrameHeight(window.innerHeight);
   }
 
   ngOnDestroy() {
