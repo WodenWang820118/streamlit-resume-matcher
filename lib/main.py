@@ -30,7 +30,7 @@ def main():
     if 'similarity_score' not in st.session_state:
         st.session_state.similarity_score = 0
 
-    with st.container():
+    with st.container(height=650):
         # Mock data when the component is not mounted
         resume_text = "This is a mock resume text. It contains relevant skills and experience."
         job_description = "This is a mock job description. It outlines the required qualifications."
