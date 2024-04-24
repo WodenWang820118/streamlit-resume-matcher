@@ -3,8 +3,11 @@ from root_component import root_component
 from python.text_preprocessor import TextPreprocessor
 from python.tfidf_calculator import TfidfCalculator
 from python.cosine_similarity_calculator import CosineSimilarityCalculator
+import mimetypes
 
 st.set_page_config(page_title="Streamlit Angular", page_icon=":rocket:", layout="wide")
+mimetypes.add_type('application/javascript', '.js')
+mimetypes.add_type('text/css', '.css')
 
 def calculate_similarity(resume_text, job_description):
     # preprocess the text
