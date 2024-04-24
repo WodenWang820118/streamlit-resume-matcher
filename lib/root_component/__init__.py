@@ -12,10 +12,10 @@ if not _RELEASE:
     print("Using development build")
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
-    build_dir = os.path.join(parent_dir, "frontend/dist/frontend/browser")
+    # build_dir = os.path.join(parent_dir, "frontend", "dist", "frontend" ,"browser")
     _component_func = components.declare_component(
         "root_component",
-        path=build_dir
+        url="https://resume-matcher.netlify.app",
     )
     print("Using production build")
 
