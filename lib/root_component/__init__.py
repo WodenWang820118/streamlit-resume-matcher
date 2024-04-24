@@ -1,10 +1,14 @@
 import os
-
+from dotenv import load_dotenv
 import streamlit.components.v1 as components
 
+# Load environment variables from .env file
+load_dotenv()
 
-_RELEASE = True
-if not _RELEASE:
+# Get the environment variable
+environment = os.getenv("ENVIRONMENT")
+
+if environment == "development":
     _component_func = components.declare_component(
         "root_component",
         url="http://localhost:5300",
