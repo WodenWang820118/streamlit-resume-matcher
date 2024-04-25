@@ -1,3 +1,4 @@
 nltk
 scikit-learn
 python-dotenv
+streamlit==1.33.0
