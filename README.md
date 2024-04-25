@@ -8,6 +8,7 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Architecture](#architecture)
+- [Deployment](#deployment)
 - [License](#license)
 
 ## Introduction
@@ -61,6 +62,7 @@ Personally, I don't like to count on Streamlit components for the frontend, so i
 Please note there is an experimental feature called [st.experimental_fragment](https://docs.streamlit.io/develop/quick-reference/changelog), which might reinforce the data binding between the Angular app and the Streamlit app. The ideal scenario would be to use this feature to pass the data between the two apps. Use Angular to handle the business logic and UI. Let Streamlit only handle the Python code.
 
 ## Deployment
+
 I'm using Netlify to deploy the app, so for production usage, you'll need to deploy the frontend somewhere. Please see the `lib/root_component/__init__.py` for details.
 
 ## License
