@@ -27,7 +27,7 @@ After opening the app, press F12 to force the Angular app to load via an iframe.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/streamlit-resume-matcher.git
+git clone https://github.com/WodenWang820118/streamlit-resume-matcher.git
 ```
 
 2. Install the required dependencies:
